@@ -4,16 +4,19 @@ class DogInfo extends React.Component {
 
 
 	render(){
+    console.log("dog to render inside dog info", this.props.dog)
 
-			const imgStyle = {
-				boxShadow: `0 0 30px 15px yellow, 0 0 50px 15px yellow, 0 0 75px 45px yellow`
+	const color = this.props.dog. isGoodDog ? "yellow" : "red";
+
+      const imgStyle = {
+				boxShadow: `0 0 30px 15px ${color}, 0 0 50px 15px ${color}, 0 0 75px 45px ${color}`
 			}
 
 			return (
 				<div id="dog-info">
-				<img src="https://weloveanimals.me/wp-content/uploads/2017/10/gettyimages-590486672-e1508512743796.jpg" style={imgStyle} alt="pup pup"/>
-				<h2>Mr. Bonkers</h2>
-				<button>Good Dog</button>
+				<img src={this.props.dog.image} style={imgStyle} alt="pup pup"/>
+				<h2>{this.props.dog && this.props.dog.name}</h2>
+				<button onClick={() => this.props.patchDog(this.props.dog.id)}>{this.props.dog.isGoodDog ? "Good dog" : "Bad dog"}</button>
 				</div>
 			)
 
